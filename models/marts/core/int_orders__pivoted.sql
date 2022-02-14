@@ -1,5 +1,6 @@
 {%set payment_methods = ['coupon','credit_card','gift_card','bank_transfer']%}
-with payments as
+with 
+paymentss as
  (select * from {{ref('stg_payments')}} ),
 
  pivoted as (
@@ -10,7 +11,7 @@ with payments as
           ,
           {% endif-%}
           {%-endfor-%}
-  from payments
+  from paymentss
   where status = 'success'
   group by 1
  )
